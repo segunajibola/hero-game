@@ -9,22 +9,22 @@ reducing the number of arguments to pass in from five to one.
 4. Update the function call.
 */
 const hero = {
-    heroElementId: "hero",
-    heroName: "Wizard",
-    heroAvatar: "images/wizard.png",
-    heroHealth: 60,
-    heroDiceRoll: 6 
+    elementId: "hero",
+    name: "Wizard",
+    avatar: "images/hero.png",
+    health: 60,
+    diceRoll: 6 
 }
 
 const monster = {
-    monsterElementId: "monster",
-    monsterName: "Orc",
-    monsterAvatar: "images/orc.png",
-    monsterHealth: 10,
-    monsterDiceRoll: 4
+    elementId: "monster",
+    name: "Orc",
+    avatar: "images/monster.jpg",
+    health: 10,
+    diceRoll: 4
 }
 
-function renderCharacter(elementId, name, avatar, health, diceRoll) {
+function renderCharacter({elementId, name, avatar, health, diceRoll}) {
     document.getElementById(elementId).innerHTML =
         `<div class="character-card">
             <h4 class="name"> ${name} </h4>
@@ -36,5 +36,5 @@ function renderCharacter(elementId, name, avatar, health, diceRoll) {
         </div>`
 }
 
-renderCharacter(heroElementId, heroName, heroAvatar, heroHealth, heroDiceRoll);
-renderCharacter(monsterElementId, monsterName, monsterAvatar, monsterHealth, monsterDiceRoll);
+renderCharacter(hero);
+renderCharacter(monster);
