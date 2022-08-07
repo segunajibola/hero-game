@@ -1,19 +1,24 @@
 /*
 CHALLENGE
-1. Convert our consts into two objects called 
-"monster" and "hero".
-2. Update the renderCharacter() function so that it accepts 
-a single object "data" as its parameter instead of five string/numbers, 
-reducing the number of arguments to pass in from five to one.
-3. Update the template now each variable is coming from "data".
-4. Update the function call.
+1. declare a let called diceHtml and initialize it with an empty 
+string. 
+2. Use a for loop to update diceHtml so that it contains the 
+HTML for our dice. The number of dice needed is specificed in 
+the diceCount property of the objects.
+3. Each dice should have the following HTML: <div class="dice">6</div>
+4. For now, each dice will display 6
+5. Swap out the diceRoll variable for diceHtml in the template
 */
+
+let diceHtml = ""
+
 const hero = {
     elementId: "hero",
     name: "Wizard",
     avatar: "images/hero.png",
     health: 60,
-    diceRoll: 6 
+    diceRoll: 6,
+    diceCount: 3
 }
 
 const monster = {
@@ -21,17 +26,23 @@ const monster = {
     name: "Orc",
     avatar: "images/monster.jpg",
     health: 10,
-    diceRoll: 4
+    diceRoll: 4,
+    diceCount: 1
 }
 
-function renderCharacter({elementId, name, avatar, health, diceRoll}) {
+function renderCharacter({elementId, name, avatar, health, diceRoll,  diceCount}) {
+    for(let i = 0; i < diceCount; i++) {
+        diceHtml += `
+        <div class="dice">6</div>`
+    }
+
     document.getElementById(elementId).innerHTML =
         `<div class="character-card">
             <h4 class="name"> ${name} </h4>
             <img class="avatar" src="${avatar}" />
             <div class="health">health: <b> ${health} </b></div>
             <div class="dice-container">
-                <div class="dice"> ${diceRoll} </div>
+                ${diceHtml}
             </div>
         </div>`
 }
