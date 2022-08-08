@@ -1,23 +1,9 @@
-
-
-/* Challenge: 
-1. Replace the for loop in getDiceRollArray with a new Array() and fill it 
-with 0s as its initial state. The new array should be diceRoll length.
-2. Use .map() directly on the array rather than declaring any new variables 
-and return a random number from 1-6 in each element of the array.
-3. Make sure you delete anything from that function that we no longer need.
-*/ 
-
-/* const poisonMushrooms = new Array(10).fill('🍄').map(mushroom => `<div class="box">${mushroom}</div>`).join('')
-
-document.getElementById('mushrooms').innerHTML = poisonMushrooms
-*/
 const hero = {
     elementId: "hero",
     name: "Wizard",
     avatar: "images/hero.png",
     health: 60,
-    diceRoll: [1, 2, 3],
+    // diceRoll: [1, 2, 3],
     diceCount: 3
 }
 
@@ -26,8 +12,27 @@ const monster = {
     name: "Orc",
     avatar: "images/monster.jpg",
     health: 10,
-    diceRoll: [2],
+    // diceRoll: [2],
     diceCount: 1
+}
+
+function Character(data) {
+    Object.assign(this, data)
+    this.getCharacterHtml = function({elementId, name, avatar, health, diceRoll,  diceCount}) {
+        
+        let diceHtml = getDiceHtml(diceCount)
+
+        document.getElementById(this.elementId).innerHTML =
+            `<div class="character-card">
+                <h4 class="name"> ${this.name} </h4>
+                <img class="avatar" src="${this.avatar}" />
+                <div class="health">health: <b> ${this.health} </b></div>
+                <div class="dice-container">
+                    ${diceHtml}
+                </div>
+            </div>`
+    }
+
 }
 
 
@@ -46,20 +51,42 @@ function getDiceHtml(diceCount){
     return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
 }
 
-function renderCharacter({elementId, name, avatar, health, diceRoll,  diceCount}) {
+// function renderCharacter({elementId, name, avatar, health, diceRoll,  diceCount}) {
 
-    let diceHtml = getDiceHtml(diceCount)
+//     let diceHtml = getDiceHtml(diceCount)
 
-    document.getElementById(elementId).innerHTML =
-        `<div class="character-card">
-            <h4 class="name"> ${name} </h4>
-            <img class="avatar" src="${avatar}" />
-            <div class="health">health: <b> ${health} </b></div>
-            <div class="dice-container">
-                ${diceHtml}
-            </div>
-        </div>`
-}
+//     document.getElementById(elementId).innerHTML =
+//         `<div class="character-card">
+//             <h4 class="name"> ${name} </h4>
+//             <img class="avatar" src="${avatar}" />
+//             <div class="health">health: <b> ${health} </b></div>
+//             <div class="dice-container">
+//                 ${diceHtml}
+//             </div>
+//         </div>`
+// }
 
-renderCharacter(hero);
-renderCharacter(monster);
+// renderCharacter(hero);
+// renderCharacter(monster);
+
+/*
+new Character(hero).getCharacterHtml(hero)
+new Character(monster).getCharacterHtml(monster)
+
+
+const studentDetails = {
+    firstName: 'janaka',
+    lastName: 'siriwardena',
+    age: 28,
+    country: 'sri lanka',
+    email: 'j.siri@totalinternet.com',
+    discordUsername: 'JS1',
+    } 
+    
+const studentDetailsCopy = {}
+
+Object.assign(studentDetailsCopy, studentDetails) 
+
+
+console.log(studentDetailsCopy)
+*/
