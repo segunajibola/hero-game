@@ -1,3 +1,17 @@
+
+
+/* Challenge: 
+1. Replace the for loop in getDiceRollArray with a new Array() and fill it 
+with 0s as its initial state. The new array should be diceRoll length.
+2. Use .map() directly on the array rather than declaring any new variables 
+and return a random number from 1-6 in each element of the array.
+3. Make sure you delete anything from that function that we no longer need.
+*/ 
+
+/* const poisonMushrooms = new Array(10).fill('🍄').map(mushroom => `<div class="box">${mushroom}</div>`).join('')
+
+document.getElementById('mushrooms').innerHTML = poisonMushrooms
+*/
 const hero = {
     elementId: "hero",
     name: "Wizard",
@@ -18,11 +32,12 @@ const monster = {
 
 
 function getDiceRollArray(diceCount){
-    const newDiceRolls = []
-    for(let i = 0; i < diceCount; i++){
-        newDiceRolls.push(Math.floor(Math.random()*6) +1)
-    }
-    return newDiceRolls
+    // const newDiceRolls = []
+    // for(let i = 0; i < diceCount; i++){
+    //     newDiceRolls.push(Math.floor(Math.random()*6) +1)
+    // }
+
+    return new Array(diceCount).fill(0).map(() => Math.floor(Math.random()*6) +1)
 }
 
 function getDiceHtml(diceCount){
