@@ -17,63 +17,51 @@ const monster = {
 }
 
 function Character(data) {
+
     Object.assign(this, data)
+
+    this.getDiceHtml = function(diceCount){
+        return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
+    }
     this.getCharacterHtml = function({elementId, name, avatar, health, diceRoll,  diceCount}) {
         
-        let diceHtml = getDiceHtml(diceCount)
+        // let diceHtml = getDiceHtml(diceCount)
 
-        document.getElementById(this.elementId).innerHTML =
-            `<div class="character-card">
-                <h4 class="name"> ${this.name} </h4>
-                <img class="avatar" src="${this.avatar}" />
-                <div class="health">health: <b> ${this.health} </b></div>
+        // document.getElementById(elementId).innerHTML =
+        return `
+                <div class="character-card">
+                <h4 class="name"> ${name} </h4>
+                <img class="avatar" src="${avatar}" />
+                <div class="health">health: <b> ${health} </b></div>
                 <div class="dice-container">
-                    ${diceHtml}
+                    ${this.getDiceHtml(diceCount)}
                 </div>
             </div>`
     }
-
 }
 
 
+
 function getDiceRollArray(diceCount){
-    // const newDiceRolls = []
-    // for(let i = 0; i < diceCount; i++){
-    //     newDiceRolls.push(Math.floor(Math.random()*6) +1)
-    // }
+    /* const newDiceRolls = []
+     for(let i = 0; i < diceCount; i++){
+       newDiceRolls.push(Math.floor(Math.random()*6) +1)
+     }
+    */
 
     return new Array(diceCount).fill(0).map(() => Math.floor(Math.random()*6) +1)
 
     // .map creates a new array from a former array. It takes each element of the former array as a single parameter, modifies each element in the former array using the .map function. Thus a new array is created.
 }
 
-function getDiceHtml(diceCount){
-    return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
+function render(){
+    document.getElementById(hero.elementId).innerHTML = new Character(hero).getCharacterHtml(hero)
+    document.getElementById(monster.elementId).innerHTML = new Character(monster).getCharacterHtml(monster)   
 }
 
-// function renderCharacter({elementId, name, avatar, health, diceRoll,  diceCount}) {
-
-//     let diceHtml = getDiceHtml(diceCount)
-
-//     document.getElementById(elementId).innerHTML =
-//         `<div class="character-card">
-//             <h4 class="name"> ${name} </h4>
-//             <img class="avatar" src="${avatar}" />
-//             <div class="health">health: <b> ${health} </b></div>
-//             <div class="dice-container">
-//                 ${diceHtml}
-//             </div>
-//         </div>`
-// }
-
-// renderCharacter(hero);
-// renderCharacter(monster);
+render()
 
 /*
-new Character(hero).getCharacterHtml(hero)
-new Character(monster).getCharacterHtml(monster)
-
-
 const studentDetails = {
     firstName: 'janaka',
     lastName: 'siriwardena',
