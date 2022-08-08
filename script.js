@@ -10,8 +10,6 @@ the diceCount property of the objects.
 5. Swap out the diceRoll variable for diceHtml in the template
 */
 
-
-
 const hero = {
     elementId: "hero",
     name: "Wizard",
@@ -30,14 +28,24 @@ const monster = {
     diceCount: 1
 }
 
+
+function getDiceRollArray(diceCount){
+    const newDiceRolls = []
+    for(let i = 0; i < diceCount; i++){
+        newDiceRolls.push(Math.floor(Math.random()*6) +1)
+    }
+    return newDiceRolls
+}
+
 function renderCharacter({elementId, name, avatar, health, diceRoll,  diceCount}) {
 
-    let diceHtml = diceRoll.map(roll => `<div class="dice">${roll}</div>`)
+    let diceHtml = diceRoll.map(roll => `<div class="dice">${roll}</div>`).join("")
 
-    for(let i = 0; i < diceCount; i++) {
-        diceHtml += `
-        <div class="dice">${diceRoll[i]}</div>`
-    }
+    // let diceHtml = ""
+    // for(let i = 0; i < diceCount; i++) {
+    //     diceHtml += `
+    //     <div class="dice">${diceRoll[i]}</div>`
+    // }
 
     document.getElementById(elementId).innerHTML =
         `<div class="character-card">
