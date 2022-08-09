@@ -4,8 +4,6 @@ import {
   getPercentage,
 } from "./utils.js";
 
-const badArray = ["monster", "villian", "beast"];
-
 /*
 Challenge
 1. Create a function called getNewMonster.
@@ -30,8 +28,6 @@ export function Character(data) {
                 </div>
             </div>`;
   };
-
-  console.log(this.getHealthBarHtml(this.health, this.maxHealth));
 
   this.diceArray = getDicePlaceholderHtml(this.diceCount);
 

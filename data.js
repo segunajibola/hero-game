@@ -28,7 +28,7 @@ const characterData = {
     },
     beast: {
         // elementId: "monster",
-        name: "Monster",
+        name: "Beast",
         avatar: "images/beast.jpg",
         health: 100,
         // diceRoll: [2],
