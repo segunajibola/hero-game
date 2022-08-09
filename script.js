@@ -10,10 +10,11 @@ const badArray = ["monster", "villian", "beast"];
 
 function getNewMonster() {
   const nextMonsterData = characterData[badArray.shift()];
+//   console.log(nextMonsterData);
   return nextMonsterData ? new Character(nextMonsterData) : {};
 }
 
-// getNewMonster() function is changing the characterData[x] dynamically
+// getNewMonster() function is changing the characterData[x] dynamically on each function call
 
 let monster = getNewMonster();
 
@@ -36,15 +37,11 @@ function attack() {
   } else if (monster.dead) {
     if (badArray.length > 0) {
       monster = getNewMonster();
+      console.log(monster)
       render();
     } else {
       endGame();
     }
-  }
-
-  if (hero.dead || monster.dead) {
-    monster.getCharacterHtml(characterData.hero);
-    // endGame()
   }
 }
 
