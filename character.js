@@ -20,10 +20,14 @@ export function Character(data) {
 
   this.maxHealth = this.health;
 
-  this.getHealthBarHtml = (remainingHealth, maximumHealth) => {
-    const percent = getPercentage(remainingHealth, maximumHealth)
+  this.getHealthBarHtml = () => {
+    const percent = getPercentage(this.health, this.maxHealth)
     // console.log(percent)
-    return percent
+    return `<div class="health-bar-outer">
+                <div class="health-bar-inner *YOUR CODE HERE* " 
+                    style="width: *YOUR CODE HERE* %;">
+                </div>
+            </div>`
   }
 
   console.log(this.getHealthBarHtml(this.health, this.maxHealth))

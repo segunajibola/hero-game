@@ -3,18 +3,18 @@ const characterData = {
         // elementId: "hero",
         name: "Hero",
         avatar: "images/hero.png",
-        health: 60,
+        health: 50,
         // diceRoll: [1, 2, 3],
-        diceCount: 3,
+        diceCount: 2,
         currentDiceScore: []
     },
     monster: {
         // elementId: "monster",
         name: "Monster",
         avatar: "images/monster.jpg",
-        health: 70,
+        health: 50,
         // diceRoll: [2],
-        diceCount: 1,
+        diceCount: 2,
         currentDiceScore: []
     }
 }
