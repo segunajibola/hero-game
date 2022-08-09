@@ -16,6 +16,24 @@ const characterData = {
         // diceRoll: [2],
         diceCount: 2,
         currentDiceScore: []
+    },
+    villian: {
+        // elementId: "monster",
+        name: "Villian",
+        avatar: "images/vilian.jpg",
+        health: 100,
+        // diceRoll: [2],
+        diceCount: 2,
+        currentDiceScore: []
+    },
+    beast: {
+        // elementId: "monster",
+        name: "Monster",
+        avatar: "images/beast.jpg",
+        health: 100,
+        // diceRoll: [2],
+        diceCount: 2,
+        currentDiceScore: []
     }
 }
 

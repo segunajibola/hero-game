@@ -7,6 +7,11 @@ const attackBtn = document.getElementById("attack-button");
 const hero_div = document.getElementById("hero");
 const monster_div = document.getElementById("monster");
 
+function getNewMonster(badArray) {
+    const nextMonsterData = new Character(characterData.badArray[0]);
+    nextMonsterData = characterData[monstersArray.shift()]
+}
+
 function render() {
   hero_div.innerHTML = hero.getCharacterHtml(characterData.hero);
   monster_div.innerHTML = monster.getCharacterHtml(characterData.monster);

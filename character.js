@@ -1,19 +1,20 @@
-import { getDiceRollArray, getDicePlaceholderHtml } from "./utils.js";
+import {
+  getDiceRollArray,
+  getDicePlaceholderHtml,
+  getPercentage,
+} from "./utils.js";
 
-/*   
-CHALLENGE
-1. Set up a new method called getHealthBarHtml
-2. Create a const called "percent" and set it equals to the 
-returned value from our getPercentage function (think what 
-arguments you want to pass in).
-3. For now, just log out the value of the new const "percent". 
-4. Down in the getCharacterHtml method, set up a const
-called healthBar and set it equal to the returned value
-of the getHealthBarHtml method.
+const badArray = ["monster", "villian", "beast"];
+
+/*
+Challenge
+1. Create a function called getNewMonster.
+2. Write logic inside the function that takes the first 
+monster from monstersArray and extracts that monster's 
+data from characterData.
+3. Save that data to a new const called nextMonsterData.
+**hint.md for help!!**
 */
-
-const getPercentage = (remainingHealth, maximumHealth) =>
-  (100 * remainingHealth) / maximumHealth;
 
 export function Character(data) {
   Object.assign(this, data);
@@ -21,18 +22,16 @@ export function Character(data) {
   this.maxHealth = this.health;
 
   this.getHealthBarHtml = () => {
-    const percent = getPercentage(this.health, this.maxHealth)
+    const percent = getPercentage(this.health, this.maxHealth);
 
     return `<div class="health-bar-outer">
-                <div class="health-bar-inner ${percent <= 25? "danger" : ""}" 
+                <div class="health-bar-inner ${percent <= 25 ? "danger" : ""}" 
                     style="width: ${percent}%;">
                 </div>
-            </div>`
-  }
+            </div>`;
+  };
 
-  console.log(this.getHealthBarHtml(this.health, this.maxHealth))
-
-
+  console.log(this.getHealthBarHtml(this.health, this.maxHealth));
 
   this.diceArray = getDicePlaceholderHtml(this.diceCount);
 
@@ -66,7 +65,6 @@ export function Character(data) {
     console.log(getPercentage(this.health, this.maxHealth));
 
     // console.log(this.getHealthBarHtml(this.health, this.maxHealth))
-
   };
 
   this.getCharacterHtml = function ({ name, avatar, health, diceCount }) {
