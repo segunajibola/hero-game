@@ -21,11 +21,9 @@ export function Character(data) {
   this.maxHealth = this.health;
 
   this.getHealthBarHtml = () => {
-    const percent = getPercentage(this.health, this.maxHealth)
-    // console.log(percent)
     return `<div class="health-bar-outer">
-                <div class="health-bar-inner *YOUR CODE HERE* " 
-                    style="width: *YOUR CODE HERE* %;">
+                <div class="health-bar-inner ${this.health <= 25? "danger" : ""}" 
+                    style="width: ${this.health}%;">
                 </div>
             </div>`
   }
@@ -72,15 +70,13 @@ export function Character(data) {
   this.getCharacterHtml = function ({ name, avatar, health, diceCount }) {
     // let diceHtml = getDiceHtml(diceCount)
 
-    const healthBar = this.getHealthBarHtml(this.health, this.maxHealth)
-
     // document.getElementById(elementId).innerHTML =
     return `
                 <div class="character-card">
                 <h4 class="name"> ${name} </h4>
-                <h4 class="name"> ${Math.floor(healthBar) + "%"} </h4>
                 <img class="avatar" src="${avatar}" />
                 <div class="health">health: <b> ${this.health} </b></div>
+                ${this.getHealthBarHtml()}
                 <div class="dice-container">
                     ${this.diceArray}
                 </div>
