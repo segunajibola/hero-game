@@ -1,13 +1,29 @@
 import { characterData } from "./data.js"
 import { Character } from "./character.js"
 
-function render(){
-    document.getElementById("hero").innerHTML = new Character(characterData.hero).getCharacterHtml(characterData.hero)
+const hero = new Character(characterData.hero)
+const monster = new Character(characterData.monster)
+const attackBtn = document.getElementById("attack-button")
+const hero_div = document.getElementById("hero")
+const monster_div = document.getElementById("monster")
 
-    document.getElementById("monster").innerHTML = new Character(characterData.monster).getCharacterHtml(characterData.monster)   
+function render(){
+
+    hero_div.innerHTML = hero.getCharacterHtml(characterData.hero)
+    monster_div.innerHTML = monster.getCharacterHtml(characterData.monster)   
 }
 
 render()
+
+function attack(){
+    hero.getDiceHtml(characterData.hero)
+    monster.getDiceHtml(characterData.monster)
+    hero.takeDamege(monster.currentDiceScore)
+    monster.takeDamege(hero.currentDiceScore)
+    render()
+}
+
+attackBtn.addEventListener("click", attack)
 
 /*
 const studentDetails = {

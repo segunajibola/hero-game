@@ -6,9 +6,22 @@ export function Character(data) {
 
     this.diceArray = getDicePlaceholderHtml(this.diceCount)
 
-    this.getDiceHtml = function(diceCount){
-        return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
+    // this.getDiceHtml = function(diceCount){
+    //     return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
+    // }
+
+    this.getDiceHtml = function() {
+        this.currentDiceScore = getDiceRollArray(this.diceCount)
+        // the empty array to create random numbers inside
+        this.diceArray = this.currentDiceScore.map(function(num){
+            return `<div class="dice">${num}</div>`
+        }).join('')
     }
+
+    this.takeDamege = function(attackScoreArray) {
+        console.log(`${this.name} : ${attackScoreArray}`)
+    }
+
     this.getCharacterHtml = function({name, avatar, health, diceCount}) {
         
         // let diceHtml = getDiceHtml(diceCount)
