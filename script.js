@@ -1,5 +1,4 @@
 import { characterData } from "./data.js"
-import { getDiceRollArray } from "./utils.js"
 import { Character } from "./character.js"
 
 function render(){

@@ -10,4 +10,10 @@ function getDiceRollArray(diceCount){
     // .map creates a new array from a former array. It takes each element of the former array as a single parameter, modifies each element in the former array using the .map function. Thus a new array is created.
 }
 
-export { getDiceRollArray }
+function getDicePlaceholderHtml(diceCount){
+    return new Array(diceCount).fill(0).map(function(){
+        return `<div class="placeholder-dice"></div>`
+    }).join('')
+}
+
+export { getDiceRollArray, getDicePlaceholderHtml }
