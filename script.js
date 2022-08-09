@@ -19,8 +19,8 @@ function getNewMonster() {
 let monster = getNewMonster();
 
 function render() {
-  hero_div.innerHTML = hero.getCharacterHtml(characterData.hero);
-  monster_div.innerHTML = monster.getCharacterHtml(characterData.monster);
+  hero_div.innerHTML = hero.getCharacterHtml();
+  monster_div.innerHTML = monster.getCharacterHtml();
 }
 
 render();

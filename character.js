@@ -63,8 +63,10 @@ export function Character(data) {
     // console.log(this.getHealthBarHtml(this.health, this.maxHealth))
   };
 
-  this.getCharacterHtml = function ({ name, avatar, health, diceCount }) {
+  this.getCharacterHtml = function () {
     // let diceHtml = getDiceHtml(diceCount)
+
+    const { name, avatar, health, diceCount } = this
 
     // document.getElementById(elementId).innerHTML =
     return `

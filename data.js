@@ -20,7 +20,7 @@ const characterData = {
     villian: {
         // elementId: "monster",
         name: "Villian",
-        avatar: "images/vilian.jpg",
+        avatar: "images/villian.jpg",
         health: 100,
         // diceRoll: [2],
         diceCount: 2,
