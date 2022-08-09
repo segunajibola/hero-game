@@ -21,9 +21,11 @@ export function Character(data) {
   this.maxHealth = this.health;
 
   this.getHealthBarHtml = () => {
+    const percent = getPercentage(this.health, this.maxHealth)
+
     return `<div class="health-bar-outer">
-                <div class="health-bar-inner ${this.health <= 25? "danger" : ""}" 
-                    style="width: ${this.health}%;">
+                <div class="health-bar-inner ${percent <= 25? "danger" : ""}" 
+                    style="width: ${percent}%;">
                 </div>
             </div>`
   }
