@@ -28,8 +28,8 @@ function attack() {
 function endGame() {
     const endMessage = hero.health === 0 && monster.health === 0 ?
         "No victors - all creatures are dead" :
-        hero.health > 0 ? "The Wizard Wins" :
-            "The Orc is Victorious"
+        hero.health > 0 ? "The Hero Wins" :
+            "The Monster is Victorious"
 
     const endEmoji = hero.health > 0 ? "🔮" : "☠️"
     document.body.innerHTML = `

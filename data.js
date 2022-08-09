@@ -1,7 +1,7 @@
 const characterData = {
     hero: {
         // elementId: "hero",
-        name: "Wizard",
+        name: "Hero",
         avatar: "images/hero.png",
         health: 60,
         // diceRoll: [1, 2, 3],
@@ -10,9 +10,9 @@ const characterData = {
     },
     monster: {
         // elementId: "monster",
-        name: "Orc",
+        name: "Monster",
         avatar: "images/monster.jpg",
-        health: 10,
+        health: 70,
         // diceRoll: [2],
         diceCount: 1,
         currentDiceScore: []

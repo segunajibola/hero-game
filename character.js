@@ -1,55 +1,85 @@
-import { getDiceRollArray, getDicePlaceholderHtml } from "./utils.js"
+import { getDiceRollArray, getDicePlaceholderHtml } from "./utils.js";
 
-const getPercentage = (remainingHealth, maximumHealth) => 
-    (100 * remainingHealth) / maximumHealth
+/*   
+CHALLENGE
+1. Set up a new method called getHealthBarHtml
+2. Create a const called "percent" and set it equals to the 
+returned value from our getPercentage function (think what 
+arguments you want to pass in).
+3. For now, just log out the value of the new const "percent". 
+4. Down in the getCharacterHtml method, set up a const
+called healthBar and set it equal to the returned value
+of the getHealthBarHtml method.
+*/
+
+const getPercentage = (remainingHealth, maximumHealth) =>
+  (100 * remainingHealth) / maximumHealth;
 
 export function Character(data) {
-    Object.assign(this, data)
+  Object.assign(this, data);
 
-    this.diceArray = getDicePlaceholderHtml(this.diceCount)
+  this.maxHealth = this.health;
 
-    this.maxHealth = this.health
-    // maxHealth will not change if this.health reduce
+  this.getHealthBarHtml = (remainingHealth, maximumHealth) => {
+    const percent = getPercentage(remainingHealth, maximumHealth)
+    // console.log(percent)
+    return percent
+  }
 
-    // this.getDiceHtml = function(diceCount){
-    //     return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
-    // }
+  console.log(this.getHealthBarHtml(this.health, this.maxHealth))
 
-    this.getDiceHtml = function() {
-        this.currentDiceScore = getDiceRollArray(this.diceCount)
-        // the empty array to create random numbers inside
-        this.diceArray = this.currentDiceScore.map(num =>
-            `<div class="dice">${num}</div>`).join('')
+
+
+  this.diceArray = getDicePlaceholderHtml(this.diceCount);
+
+  // maxHealth will not change if this.health reduce
+
+  // this.getDiceHtml = function(diceCount){
+  //     return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
+  // }
+
+  this.getDiceHtml = function () {
+    this.currentDiceScore = getDiceRollArray(this.diceCount);
+    // the empty array to create random numbers inside
+    this.diceArray = this.currentDiceScore
+      .map((num) => `<div class="dice">${num}</div>`)
+      .join("");
+  };
+
+  this.takeDamege = function (attackScoreArray) {
+    const totalAttackScore = attackScoreArray.reduce(
+      (accumulator, itterator) => accumulator + itterator
+    );
+
+    this.health -= totalAttackScore;
+
+    if (this.health <= 0) {
+      this.health = 0;
+      this.dead = true;
     }
 
-    this.takeDamege = function(attackScoreArray) {
+    // console.log(`${this.health} : ${totalAttackScore}`)
+    console.log(getPercentage(this.health, this.maxHealth));
 
-        const totalAttackScore = attackScoreArray.reduce((accumulator, itterator) => accumulator + itterator)
+    // console.log(this.getHealthBarHtml(this.health, this.maxHealth))
 
-        this.health -= totalAttackScore
+  };
 
-        if(this.health <= 0){
-            this.health = 0
-            this.dead = true
-        }
+  this.getCharacterHtml = function ({ name, avatar, health, diceCount }) {
+    // let diceHtml = getDiceHtml(diceCount)
 
-        console.log(`${this.health} : ${totalAttackScore}`)
-        console.log(getPercentage)
-    }
+    const healthBar = this.getHealthBarHtml(this.health, this.maxHealth)
 
-    this.getCharacterHtml = function({name, avatar, health, diceCount}) {
-        
-        // let diceHtml = getDiceHtml(diceCount)
-
-        // document.getElementById(elementId).innerHTML =
-        return `
+    // document.getElementById(elementId).innerHTML =
+    return `
                 <div class="character-card">
                 <h4 class="name"> ${name} </h4>
+                <h4 class="name"> ${Math.floor(healthBar) + "%"} </h4>
                 <img class="avatar" src="${avatar}" />
                 <div class="health">health: <b> ${this.health} </b></div>
                 <div class="dice-container">
                     ${this.diceArray}
                 </div>
-            </div>`
-    }
+            </div>`;
+  };
 }
