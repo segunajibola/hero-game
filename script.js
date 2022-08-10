@@ -7,10 +7,11 @@ const hero_div = document.getElementById("hero");
 const monster_div = document.getElementById("monster");
 
 const badArray = ["monster", "villian", "beast"];
+let isWaiting = false;
 
 function getNewMonster() {
   const nextMonsterData = characterData[badArray.shift()];
-//   console.log(nextMonsterData);
+  //   console.log(nextMonsterData);
   return nextMonsterData ? new Character(nextMonsterData) : {};
 }
 
@@ -26,27 +27,32 @@ function render() {
 render();
 
 function attack() {
-  hero.getDiceHtml(characterData.hero);
-  monster.getDiceHtml(characterData.monster);
-  hero.takeDamege(monster.currentDiceScore);
-  monster.takeDamege(hero.currentDiceScore);
-  render();
+  if (!isWaiting) {
+    hero.setDiceHtml(characterData.hero);
+    monster.setDiceHtml(characterData.monster);
+    hero.takeDamege(monster.currentDiceScore);
+    monster.takeDamege(hero.currentDiceScore);
+    render();
 
-  if (hero.dead) {
-    endGame();
-  } else if (monster.dead) {
-    if (badArray.length > 0) {
-        setTimeout(()=>{
-            monster = getNewMonster()
-            render()
-        },1500)
-    } else {
+    if (hero.dead) {
       endGame();
+    } else if (monster.dead) {
+      isWaiting = true;
+      if (badArray.length > 0) {
+        setTimeout(() => {
+          monster = getNewMonster();
+          render();
+          isWaiting = false;
+        }, 1000);
+      } else {
+        endGame();
+      }
     }
   }
 }
 
 function endGame() {
+  isWaiting = true;
   const endMessage =
     hero.health === 0 && monster.health === 0
       ? "No victors - all creatures are dead"
@@ -55,7 +61,7 @@ function endGame() {
       : "The Monster is Victorious";
 
   const endEmoji = hero.health > 0 ? "🔮" : "☠️";
-  setTimeout(()=> {
+  setTimeout(() => {
     document.body.innerHTML = `
         <div class="end-game">
             <h2>Game Over</h2> 
@@ -63,8 +69,7 @@ function endGame() {
             <p class="end-emoji">${endEmoji}</p>
         </div>
         `;
-  }, 1500)
-  
+  }, 1500);
 }
 
 attackBtn.addEventListener("click", attack);

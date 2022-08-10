@@ -29,18 +29,18 @@ export function Character(data) {
             </div>`;
   };
 
-  this.diceArray = getDicePlaceholderHtml(this.diceCount);
+  this.diceHtml = getDicePlaceholderHtml(this.diceCount);
 
   // maxHealth will not change if this.health reduce
 
-  // this.getDiceHtml = function(diceCount){
+  // this.setDiceHtml = function(diceCount){
   //     return getDiceRollArray(diceCount).map(num => `<div class="dice">${num}</div>`).join('')
   // }
 
-  this.getDiceHtml = function () {
+  this.setDiceHtml = function () {
     this.currentDiceScore = getDiceRollArray(this.diceCount);
     // the empty array to create random numbers inside
-    this.diceArray = this.currentDiceScore
+    this.diceHtml = this.currentDiceScore
       .map((num) => `<div class="dice">${num}</div>`)
       .join("");
   };
@@ -64,19 +64,20 @@ export function Character(data) {
   };
 
   this.getCharacterHtml = function () {
-    // let diceHtml = getDiceHtml(diceCount)
+    // let diceHtml = setDiceHtml(diceCount)
 
-    const { name, avatar, health, diceCount } = this
+    const { name, avatar, health, diceHtml} = this
+    const healthBar = this.getHealthBarHtml()
 
     // document.getElementById(elementId).innerHTML =
     return `
                 <div class="character-card">
                 <h4 class="name"> ${name} </h4>
                 <img class="avatar" src="${avatar}" />
-                <div class="health">health: <b> ${this.health} </b></div>
-                ${this.getHealthBarHtml()}
+                <div class="health">health: <b> ${health} </b></div>
+                ${healthBar}
                 <div class="dice-container">
-                    ${this.diceArray}
+                    ${diceHtml}
                 </div>
             </div>`;
   };

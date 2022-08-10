@@ -5,7 +5,7 @@ const characterData = {
         avatar: "images/hero.png",
         health: 100,
         // diceRoll: [1, 2, 3],
-        diceCount: 2,
+        diceCount: 3,
         currentDiceScore: []
     },
     monster: {
@@ -14,7 +14,7 @@ const characterData = {
         avatar: "images/monster.jpg",
         health: 100,
         // diceRoll: [2],
-        diceCount: 2,
+        diceCount: 1,
         currentDiceScore: []
     },
     villian: {
@@ -23,7 +23,7 @@ const characterData = {
         avatar: "images/villian.jpg",
         health: 100,
         // diceRoll: [2],
-        diceCount: 2,
+        diceCount: 1,
         currentDiceScore: []
     },
     beast: {
@@ -32,7 +32,7 @@ const characterData = {
         avatar: "images/beast.jpg",
         health: 100,
         // diceRoll: [2],
-        diceCount: 2,
+        diceCount: 1,
         currentDiceScore: []
     }
 }
